@@ -20,7 +20,7 @@
 
 # Readme Updater
 
-Update repo README.md files, using the data stores in the **[Dari Dev's Projects Manager](https://github.com/darideveloper/portfolio_backend)**
+Update README.md files, using the data stored in the **[Dari Dev's Projects Manager](https://github.com/darideveloper/portfolio_backend)**
 
 Project type: **personal**
 
@@ -55,9 +55,16 @@ Project type: **personal**
 
 # Details
 
-The project detect new changes to saved in the README.mc files, for project stores in **[Dari Dev's Projects Manager](https://github.com/darideveloper/portfolio_backend)**, get the new markdown data, commit it and push the changes to the remote repo.
+The project detect new changes to save data in the README.md files, for project stored in **[Dari Dev's Projects Manager](https://github.com/darideveloper/portfolio_backend)**, get the new markdown data, update the files, commit the changes and push to the remote repo.
 
-You should have registered your porjects in the dashboard and a local copy in your pc.
+With this project, you don't need to update your readme files manually, never more. 
+
+You should have registered your project in the dashboard and a local copy in your pc.
+
+**![Contact Me](mailto:dariddeveloper@gmail.com) For give you free access to the dashboard**
+
+Sample Readme Preview auto-generated: 
+![sample readme](https://github.com/darideveloper/readme-updater/blob/master/screenshots/sample-readme.png?raw=true)
 
 # Install
 
@@ -80,9 +87,9 @@ To run the project, the following software must be installed:
 
 ## Enviroment variables
 
-In this file (*.env*), are the main options and settings of the project.
+In the file *.env*, are the main options and settings of the project.
 
-1. Create a **.env** file, and place the following content
+Create a **.env** file, and place the following content
 
 ```bash
 API_USER_NAME = {your-username-here}
@@ -90,17 +97,15 @@ API_PASSWORD = {your-password-here}
 API_BASE = https://daridev-portfolio.herokuapp.com
 ```
 
+*Note: you can see as reference the **sample.env** file*
+
 ### API_USER_NAME
 
-User name of the project manager dashboard. 
+Replace it with your user name of the project manager dashboard. 
 
 ### API_PASSWORD
 
-Password of the project manager dashboard. 
-
-*Note: you can see as reference the **sample.env** file*
-
-*Note: you can see as reference the **sample.env** file*
+Replace it with your password of the project manager dashboard. 
 
 ## Dashboard
 
