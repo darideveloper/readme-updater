@@ -12,8 +12,8 @@ DEBUG = os.getenv ('DEBUG') == 'True'
 class Api ():
     
     def __init__ (self):
-        self.token = None
         self.projects_data = {}
+        self.header = {}
         
         if DEBUG: 
             print (">>Debug mode<<")
@@ -38,7 +38,8 @@ class Api ():
             print ('Login failed: token not found')
             quit()
             
-        self.token = res_json['token']
+        token = res_json['token']
+        self.header = {'Authorization': f'Token {token}'}
         print ('Login success')
 
     def __query_projects__ (self):
@@ -50,7 +51,7 @@ class Api ():
         while True:
             
             # Get projects data from api
-            res = requests.get (url, headers={'Authorization': 'Token ' + self.token})
+            res = requests.get (url, headers=self.header)
             res_json = res.json ()
             
             # Get next link and results
@@ -95,7 +96,7 @@ class Api ():
             print (f"\t{project_name}...")
             
             url = f"{API_BASE}/project-markdown/?id={project_id}"
-            res = requests.get (url, headers={'Authorization': 'Token ' + self.token})
+            res = requests.get (url, headers=self.header)
             
             # Validate response status
             if res.status_code != 200:
@@ -112,6 +113,21 @@ class Api ():
             # Save markdown in dict
             self.projects_data[project_id]["markdown"] = markdown
             
+    def update_project_status (self, project_id:int) -> bool:
+        """ Update status project using api
+
+        Args:
+            project_id (int): project id
+            
+        Returns:
+            bool: True if status updated, False if not
+        """
+        
+        url = f"{API_BASE}/project-update-remote/"
+        res = requests.post (url, headers=self.header, data={'id': project_id})
+        
+        return res.status_code == 200
+        
     def get_data (self) -> list:
         """ Get projects data who need update: id, name, location_pc, markdown
 
@@ -126,7 +142,11 @@ class Api ():
     
 if __name__ == '__main__':
     
-    # Debug api when run directly
+    # Debug get projects data api when run directly
     api = Api ()
     projects_data = api.get_data ()
+    
+    # Debug update project status api when run directly
+    api.update_projet_status (projects_data.keys ()[0])
     print ()
+    

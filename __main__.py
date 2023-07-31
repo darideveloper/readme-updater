@@ -4,8 +4,8 @@ from updater import update_readme
 
 def main (): 
     
-    apì = Api ()
-    projects_data = apì.get_data ()
+    api = Api ()
+    projects_data = api.get_data ()
     
     print ("Upating projects...")
     for project_id, project_data in projects_data.items ():
@@ -22,6 +22,13 @@ def main ():
         
         print (f"\tUpdating '{project_name}' in path '{project_location}'...")
         update_readme (project_location, markdown)
+        
+        # Update project status
+        updated = api.update_project_status (project_id)
+        if updated:
+            print (f"\tStatus updated")
+        else:
+            print (f"\tStatus not updated")
     
 if __name__ == "__main__":
     main()
