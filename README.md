@@ -45,6 +45,14 @@ Project type: **personal**
 
 <div align='center'><a href='https://github.com/darideveloper/portfolio' target='_blank'> <img src='https://github.com/darideveloper/portfolio/blob/master/imgs/logo.png?raw=true' alt='Portfolio Frontend' title='Portfolio Frontend' height='50px'/> </a><a href='None' target='_blank'> <img src='None' alt='Portfolio Backend' title='Portfolio Backend' height='50px'/> </a></div>
 
+# Media
+
+![Terminal 1](https://github.com/darideveloper/readme-updater/blob/master/screenshots/terminal-1.png?raw=true)
+
+![Terminal 2](https://github.com/darideveloper/readme-updater/blob/master/screenshots/terminal-2.png?raw=true)
+
+![Sample Readme](https://github.com/darideveloper/readme-updater/blob/master/screenshots/sample-readme.png?raw=true)
+
 # Details
 
 The project detect new changes to saved in the README.mc files, for project stores in **[Dari Dev's Projects Manager](https://github.com/darideveloper/portfolio_backend)**, get the new markdown data, commit it and push the changes to the remote repo.
@@ -79,6 +87,7 @@ In this file (*.env*), are the main options and settings of the project.
 ```bash
 API_USER_NAME = {your-username-here}
 API_PASSWORD = {your-password-here}
+API_BASE = https://daridev-portfolio.herokuapp.com
 ```
 
 ### API_USER_NAME
@@ -91,11 +100,13 @@ Password of the project manager dashboard.
 
 *Note: you can see as reference the **sample.env** file*
 
+*Note: you can see as reference the **sample.env** file*
+
 ## Dashboard
 
 In the dashboard, be sure to save the Location PC as the absolute path of the local copy of the project, in your pc. 
 
-[INSERT IMAGE HERE]
+![Location PC screenshot](https://github.com/darideveloper/readme-updater/blob/master/screenshots/location-pc.png?raw=true)
 
 # Run
 
