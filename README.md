@@ -111,7 +111,13 @@ Replace it with your password of the project manager dashboard.
 
 In the dashboard, be sure to save the Location PC as the absolute path of the local copy of the project, in your pc. 
 
-![Location PC screenshot](https://github.com/darideveloper/readme-updater/blob/master/screenshots/location-pc.png?raw=true)
+**NOTE: *be sure to don't have white spaces in the project paths.***
+
+Instead of: *C:UsershernaDownloadsmy project*
+save the project in: *C:UsershernaDownloads***my-project****
+
+
+![Location PC screenshot](https://github.com/darideveloper/readme-updater/blob/master/screenshots/location-pc.png?raw=true
 
 # Run
 
