@@ -20,7 +20,7 @@ def main ():
             print (f"\tNo markdown data for project '{project_name}'")
             continue
         
-        print (f"\tUpdating '{project_name}' in path '{project_location}'...")
+        print (f"\n\t>> Updating '{project_name}' in path '{project_location}'...")
         update_readme (project_location, markdown)
         
         # Update project status
