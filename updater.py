@@ -32,4 +32,3 @@ def update_readme (path:str, markdown:str):
     os.system ('git push origin master')
     print ("--------------------------\n")
     
-    print (f"\t\tDone.")
