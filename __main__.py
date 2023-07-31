@@ -7,7 +7,7 @@ def main ():
     api = Api ()
     projects_data = api.get_data ()
     
-    print ("Upating projects...")
+    print ("\nUpating projects...")
     for project_id, project_data in projects_data.items ():
         
         # Get project data
