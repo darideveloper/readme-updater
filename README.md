@@ -117,7 +117,15 @@ Instead of: *C:UsershernaDownloadsmy project*
 save the project in: *C:UsershernaDownloads***my-project****
 
 
-![Location PC screenshot](https://github.com/darideveloper/readme-updater/blob/master/screenshots/location-pc.png?raw=true
+![Location PC screenshot](https://github.com/darideveloper/readme-updater/blob/master/screenshots/location-pc.png?raw=true)
+
+## Local repo
+
+Be sure to have the following
+1. A have a local copy of the project, in the above specified path
+2. Git installed and configured.
+3. **Remote origin** setup in each project.
+4. **'master'** as a main branch in each project.
 
 # Run
 
