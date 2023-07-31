@@ -71,10 +71,6 @@ class Api ():
                         'location': location_pc
                     }
             
-            # Show status
-            projects_count = len (self.projects_data)
-            print (f"\t{projects_count} projects found")
-            
             # Debug
             if DEBUG:
                 break
@@ -82,6 +78,10 @@ class Api ():
             # End loop if no more pages
             if not url:
                 break 
+            
+        # Show status
+        projects_count = len (self.projects_data)
+        print (f"\t{projects_count} projects found")
     
     def __query_markdown__ (self):
         """ get markdown data of all projects """
