@@ -16,19 +16,19 @@ def update_readme (path:str, markdown:str):
     if 'README.md' not in files:
         with open ('README.md', 'w') as file:
             file.write ('')
-        print (f"\t\tREADME.md file created")    
+        print (f"README.md file created")    
     
     # Write data in readme file 
     with open ('README.md', 'w', encoding='UTF-8') as file:
         file.write (markdown)
-    print (f"\t\tREADME.md file updated")
+    print (f"README.md file updated")
         
     # Commit changes
     path_formatted = path.replace ('\\', '/')
-    print ("\n---------- Git ----------")
+    print ("---------- Git ----------")
     os.system (f'git config --global --add safe.directory {path_formatted}')
     os.system ('git add .')
     os.system ('git commit -m "Update README.md with Bot"')
     os.system ('git push origin master')
-    print ("--------------------------\n")
+    print ("--------------------------")
     

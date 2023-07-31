@@ -86,32 +86,34 @@ class Api ():
     def __query_markdown__ (self):
         """ get markdown data of all projects """
         
-        print ("\nGetting markdown data...")
-        
-        # Update each project
-        for project_id, project_data in self.projects_data.items():
+        if self.projects_data:
             
-            project_name = project_data['name']
+            print ("\nGetting markdown data...")
             
-            print (f"\t{project_name}...")
-            
-            url = f"{API_BASE}/project-markdown/?id={project_id}"
-            res = requests.get (url, headers=self.header)
-            
-            # Validate response status
-            if res.status_code != 200:
-                print (f"\tError getting markdown data for project '{project_name}'")
-                continue
-            
-            # Get markdown
-            res_json = res.json ()
-            markdown = res_json['data']
-            
-            # remove backslashes
-            markdown = markdown.replace ('\\', '')
-            
-            # Save markdown in dict
-            self.projects_data[project_id]["markdown"] = markdown
+            # Update each project
+            for project_id, project_data in self.projects_data.items():
+                
+                project_name = project_data['name']
+                
+                print (f"\t{project_name}...")
+                
+                url = f"{API_BASE}/project-markdown/?id={project_id}"
+                res = requests.get (url, headers=self.header)
+                
+                # Validate response status
+                if res.status_code != 200:
+                    print (f"\tError getting markdown data for project '{project_name}'")
+                    continue
+                
+                # Get markdown
+                res_json = res.json ()
+                markdown = res_json['data']
+                
+                # remove backslashes
+                markdown = markdown.replace ('\\', '')
+                
+                # Save markdown in dict
+                self.projects_data[project_id]["markdown"] = markdown
             
     def update_project_status (self, project_id:int) -> bool:
         """ Update status project using api
