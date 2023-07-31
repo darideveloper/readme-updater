@@ -14,11 +14,11 @@ class Api ():
         self.token = None
         self.projects_data = {}
     
-    def login (self):
+    def __login__ (self):
         """ Login with crdentials and get token """
         
         # Login
-        url = API_BASE + '/api-token-auth/'
+        url = f"{API_BASE}/api-token-auth/"
         payload = {
             'username': API_USER_NAME,
             'password': API_PASSWORD
@@ -37,12 +37,12 @@ class Api ():
         self.token = res_json['token']
         print ('Login success')
 
-    def query_projects (self):
+    def __query_projects__ (self):
         """ Get update status of all projects """
         
         print ("Getting projects data...")
                 
-        url = API_BASE + '/projects/'
+        url = f"{API_BASE}/projects-sumary/"
         while True:
             
             # Get projects data from api
@@ -63,19 +63,60 @@ class Api ():
                 if not updated_remote and location_pc:
                     self.projects_data[id] = {
                         'name': name,
-                        'updated_remote': updated_remote,
                         'location_pc': location_pc
                     }
             
+            # Show status
+            projects_count = len (self.projects_data)
+            print (f"\t{projects_count} projects found")
+            
+            # Debug
+            break
+            
             # End loop if no more pages
             if not url:
-                break
-            
+                break 
     
-    def get_markdown (self):
-        pass
+    def __query_markdown__ (self):
+        """ get markdown data of all projects """
+        
+        print ("Getting markdown data...")
+        
+        # Update each project
+        for project_id, project_data in self.projects_data.items():
+            
+            project_name = project_data['name']
+            
+            print (f"\t{project_name}...")
+            
+            url = f"{API_BASE}/project-markdown/?id={project_id}"
+            res = requests.get (url, headers={'Authorization': 'Token ' + self.token})
+            
+            # Validate response status
+            if res.status_code != 200:
+                print (f"\tError getting markdown data for project '{project_name}'")
+                continue
+            
+            # Get markdown
+            res_json = res.json ()
+            markdown = res_json['data']
+            
+            # Save markdown in dict
+            self.projects_data[project_id]["markdown"] = markdown
+            
+    def get_data (self) -> list:
+        """ Get projects data who need update: id, name, location_pc, markdown
+
+        Returns:
+            list: dicts with projects data
+        """
+    
+        self.__login__ ()
+        self.__query_projects__ ()
+        self.__query_markdown__ ()
+        return self.projects_data        
     
 if __name__ == '__main__':
     api = Api ()
-    api.login ()
-    api.query_projects ()
+    projects_data = api.get_data ()
+    print ()
