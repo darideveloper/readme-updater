@@ -33,7 +33,7 @@ def main ():
             else:
                 print (f">> Error: Status not updated")
             
-    print ("Done.")
+    input ("Done.")
     
 if __name__ == "__main__":
     main()
