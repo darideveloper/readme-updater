@@ -27,6 +27,7 @@ def update_readme (path:str, markdown:str):
     path_formatted = path.replace ('\\', '/')
     print ("---------- Git ----------")
     os.system (f'git config --global --add safe.directory {path_formatted}')
+    os.system ('git checkout master')
     os.system ('git pull origin master')
     os.system ('git add README.md')
     os.system ('git commit -m "Update README.md with Bot"')
