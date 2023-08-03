@@ -43,7 +43,7 @@ Project type: **personal**
 
 # Related projects
 
-<div align='center'><a href='https://github.com/darideveloper/portfolio' target='_blank'> <img src='https://github.com/darideveloper/portfolio/blob/master/imgs/logo.png?raw=true' alt='Portfolio Frontend' title='Portfolio Frontend' height='50px'/> </a><a href='None' target='_blank'> <img src='None' alt='Portfolio Backend' title='Portfolio Backend' height='50px'/> </a></div>
+<div align='center'><a href='https://github.com/darideveloper/portfolio' target='_blank'> <img src='https://github.com/darideveloper/portfolio/blob/master/imgs/logo.png?raw=true' alt='Portfolio Frontend' title='Portfolio Frontend' height='50px'/> </a></div>
 
 # Media
 
