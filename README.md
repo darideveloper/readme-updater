@@ -61,7 +61,7 @@ With this project, you don't need to update your readme files manually, never mo
 
 You should have registered your project in the dashboard and a local copy in your pc.
 
-**![Contact Me](mailto:dariddeveloper@gmail.com) For give you free access to the dashboard**
+**[Contact Me](mailto:dariddeveloper@gmail.com) For give you free access to the dashboard**
 
 Sample Readme Preview auto-generated: 
 ![sample readme](https://github.com/darideveloper/readme-updater/blob/master/screenshots/sample-readme.png?raw=true)

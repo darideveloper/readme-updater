@@ -32,7 +32,9 @@ def main ():
                 print (f"\tNo markdown data for project '{project_name}'")
                 continue
             
-            commands_to_save += update_readme (project_location, markdown)
+            new_commands = update_readme (project_location, markdown)
+            if new_commands:
+                commands_to_save += new_commands
             
             # Update project status
             updated = api.update_project_status (project_id)
@@ -47,7 +49,7 @@ def main ():
             file.write (f"{commands_text}")
         print ("\nCommands to update projects saved in 'git-commands.bat'")
         
-    input ("Done. Enter to exit...")
+    print ("Done.")
     
 if __name__ == "__main__":
     main()
