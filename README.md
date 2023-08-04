@@ -95,6 +95,7 @@ Create a **.env** file, and place the following content
 API_USER_NAME = {your-username-here}
 API_PASSWORD = {your-password-here}
 API_BASE = https://daridev-portfolio.herokuapp.com
+AUTO_RUN_GIT = True
 ```
 
 *Note: you can see as reference the **sample.env** file*
@@ -106,6 +107,22 @@ Replace it with your user name of the project manager dashboard.
 ### API_PASSWORD
 
 Replace it with your password of the project manager dashboard. 
+
+### AUTO_RUN_GIT
+
+Save as `True`, if you want to python to run the following commands, to save and upload changes in the repo.
+
+```bash
+cd {your project path}
+git config --global --add safe.directory {your project path}
+git checkout master
+git pull origin master
+git add README.md
+git commit -m "Update README.md with Bot"
+git push origin master
+```
+
+if `False`, python will save the commands in `git-commands.bat`.
 
 ## Dashboard
 

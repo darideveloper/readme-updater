@@ -1,9 +1,17 @@
 import os
 from api import Api
 from updater import update_readme
+from dotenv import load_dotenv
+
+load_dotenv ()
+AUTO_RUN_GIT = os.getenv ('AUTO_RUN_GIT') == 'True'
+CURRENT_DIR = os.path.dirname (os.path.abspath (__file__))
 
 def main (): 
     
+    commands_to_save = []        
+    
+    # Get api data
     api = Api ()
     projects_data = api.get_data ()
     
@@ -24,7 +32,7 @@ def main ():
                 print (f"\tNo markdown data for project '{project_name}'")
                 continue
             
-            update_readme (project_location, markdown)
+            commands_to_save += update_readme (project_location, markdown)
             
             # Update project status
             updated = api.update_project_status (project_id)
@@ -32,8 +40,14 @@ def main ():
                 print (f"Status updated")
             else:
                 print (f">> Error: Status not updated")
-            
-    input ("Done.")
+    
+    if commands_to_save:
+        commands_text = ' &\n'.join (commands_to_save)
+        with open  (os.path.join (CURRENT_DIR, 'git-commands.bat'), 'w') as file:
+            file.write (f"{commands_text}")
+        print ("\nCommands to update projects saved in 'git-commands.bat'")
+        
+    input ("Done. Enter to exit...")
     
 if __name__ == "__main__":
     main()

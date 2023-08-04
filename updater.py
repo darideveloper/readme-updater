@@ -1,4 +1,8 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv ()
+AUTO_RUN_GIT = os.getenv ('AUTO_RUN_GIT') == 'True'
 
 def update_readme (path:str, markdown:str):
     """ Update README.md file in a project and push changes
@@ -22,15 +26,34 @@ def update_readme (path:str, markdown:str):
     with open ('README.md', 'w', encoding='UTF-8') as file:
         file.write (markdown)
     print (f"README.md file updated")
+    
+    # Git commands
+    if AUTO_RUN_GIT: 
+        path_formatted = path.replace ('\\', '/')
+    else:
+        path_formatted = path
+    commands = [
+        f'git config --global --add safe.directory {path_formatted}',
+        'git checkout master',
+        'git pull origin master',
+        'git add README.md',
+        'git commit -m "Update README.md with Bot"',
+        'git push origin master',
+    ]
         
-    # Commit changes
-    path_formatted = path.replace ('\\', '/')
-    print ("---------- Git ----------")
-    os.system (f'git config --global --add safe.directory {path_formatted}')
-    os.system ('git checkout master')
-    os.system ('git pull origin master')
-    os.system ('git add README.md')
-    os.system ('git commit -m "Update README.md with Bot"')
-    os.system ('git push origin master')
-    print ("--------------------------")
+    if AUTO_RUN_GIT:
+        # auto commit changes
+        print ("---------- Git ----------")
+        for command in commands:
+            print (f"Executing: '{command}'")
+            os.system (command)
+        print ("--------------------------")
+    else:
+        # Add cd to commands
+        commands.insert (0, f'cd {path_formatted}')
+        
+        # Return commands
+        return commands
+        
+        
     
