@@ -55,116 +55,116 @@ Project type: **personal**
 
 # Details
 
-The project detect new changes to save data in the README.md files, for project stored in **[Dari Dev's Projects Manager](https://github.com/darideveloper/portfolio_backend)**, get the new markdown data, update the files, commit the changes and push to the remote repo.
-
-With this project, you don't need to update your readme files manually, never more. 
-
-You should have registered your project in the dashboard and a local copy in your pc.
-
-**[Contact Me](mailto:dariddeveloper@gmail.com) For give you free access to the dashboard**
-
-Sample Readme Preview auto-generated: 
+The project detect new changes to save data in the README.md files, for project stored in **[Dari Dev's Projects Manager](https://github.com/darideveloper/portfolio_backend)**, get the new markdown data, update the files, commit the changes and push to the remote repo.
+
+With this project, you don't need to update your readme files manually, never more. 
+
+You should have registered your project in the dashboard and a local copy in your pc.
+
+**[Contact Me](mailto:dariddeveloper@gmail.com) For give you free access to the dashboard**
+
+Sample Readme Preview auto-generated: 
 ![sample readme](https://github.com/darideveloper/readme-updater/blob/master/screenshots/sample-readme.png?raw=true)
 
 # Install
 
-## Third party modules
-
-Install all modules from pip: 
-
-``` bash
-$ pip install -r requirements.txt
-```
-
-## Programs
-
-To run the project, the following software must be installed:
-
-* Git
+## Third party modules
+
+Install all modules from pip: 
+
+``` bash
+$ pip install -r requirements.txt
+```
+
+## Programs
+
+To run the project, the following software must be installed:
+
+* Git
 * Python >= 3.10
 
 # Settings
 
-## Enviroment variables
-
-In the file *.env*, are the main options and settings of the project.
-
-Create a **.env** file, and place the following content
-
-```bash
-API_USER_NAME = {your-username-here}
-API_PASSWORD = {your-password-here}
-API_BASE = https://daridev-portfolio.herokuapp.com
-AUTO_RUN_GIT = True
-```
-
-*Note: you can see as reference the **sample.env** file*
-
-### API_USER_NAME
-
-Replace it with your user name of the project manager dashboard. 
-
-### API_PASSWORD
-
-Replace it with your password of the project manager dashboard. 
-
-### AUTO_RUN_GIT
-
-Save as `True`, if you want to python to run the following commands, to save and upload changes in the repo.
-
-```bash
-cd {your project path}
-git config --global --add safe.directory {your project path}
-git checkout master
-git pull origin master
-git add README.md
-git commit -m "Update README.md with Bot"
-git push origin master
-```
-
-if `False`, python will save the commands in `git-commands.bat`.
-
-## Dashboard
-
-In the dashboard, be sure to save the Location PC as the absolute path of the local copy of the project, in your pc. 
-
-**NOTE: *be sure to don't have white spaces in the project paths.***
-
-Instead of: *C:UsershernaDownloadsmy project*
-save the project in: *C:UsershernaDownloads***my-project****
-
-
-![Location PC screenshot](https://github.com/darideveloper/readme-updater/blob/master/screenshots/location-pc.png?raw=true)
-
-## Local repo
-
-Be sure to have the following
-1. A have a local copy of the project, in the above specified path
-2. Git installed and configured.
-3. **Remote origin** setup in each project.
+## Enviroment variables
+
+In the file *.env*, are the main options and settings of the project.
+
+Create a **.env** file, and place the following content
+
+```bash
+API_USER_NAME = {your-username-here}
+API_PASSWORD = {your-password-here}
+API_BASE = https://daridev-portfolio.herokuapp.com
+AUTO_RUN_GIT = True
+```
+
+*Note: you can see as reference the **sample.env** file*
+
+### API_USER_NAME
+
+Replace it with your user name of the project manager dashboard. 
+
+### API_PASSWORD
+
+Replace it with your password of the project manager dashboard. 
+
+### AUTO_RUN_GIT
+
+Save as `True`, if you want to python to run the following commands, to save and upload changes in the repo.
+
+```bash
+cd {your project path}
+git config --global --add safe.directory {your project path}
+git checkout master
+git pull origin master
+git add README.md
+git commit -m "Update README.md with Bot"
+git push origin master
+```
+
+if `False`, python will save the commands in `git-commands.bat`.
+
+## Dashboard
+
+In the dashboard, be sure to save the Location PC as the absolute path of the local copy of the project, in your pc. 
+
+**NOTE: *be sure to don't have white spaces in the project paths.***
+
+Instead of: *C:UsershernaDownloadsmy project*
+save the project in: *C:UsershernaDownloads***my-project****
+
+
+![Location PC screenshot](https://github.com/darideveloper/readme-updater/blob/master/screenshots/location-pc.png?raw=true)
+
+## Local repo
+
+Be sure to have the following
+1. A have a local copy of the project, in the above specified path
+2. Git installed and configured.
+3. **Remote origin** setup in each project.
 4. **'master'** as a main branch in each project.
 
 # Run
 
-Run the project folder with python: 
-```sh
-python .
-```
-
-Or run the main file:
-```sh
-python __main__.py
-```
-
-## Run in loop
-
+Run the project folder with python: 
+```sh
+python .
+```
+
+Or run the main file:
+```sh
+python __main__.py
+```
+
+## Run in loop
+
 If you want to tun the bot in loop (one or multiple times each day), I suggest you to use tools to run the script all days at specific time, like [Task Scheduler](https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page) for windows, [Cron](https://www.google.com/search?q=linux+cronjobs&oq=linux+cronjobs&aqs=chrome..69i57.3719j0j1&sourceid=chrome&ie=UTF-8) for Linux or [Jenkins](https://www.jenkins.io/) for both systems
 
 # Roadmap
 
-* [X] Detect updated projects
-* [X] Get project data
-* [X] Get markdown from each project
-* [X] Update local README.md file. 
+* [X] Detect updated projects
+* [X] Get project data
+* [X] Get markdown from each project
+* [X] Update local README.md file. 
 * [X] Update project status in dashboard
 
