@@ -1,7 +1,9 @@
 import os
 from api import Api
-from updater import update_readme
+from logs import logger
 from dotenv import load_dotenv
+from updater import update_readme
+
 
 load_dotenv ()
 AUTO_RUN_GIT = os.getenv ('AUTO_RUN_GIT') == 'True'
@@ -16,7 +18,7 @@ def main ():
     projects_data = api.get_data ()
     
     if projects_data:
-        print ("\nUpating projects...")
+        logger.info ("\nUpating projects...")
         for project_id, project_data in projects_data.items ():
             
             # Get project data
@@ -25,11 +27,11 @@ def main ():
             markdown = project_data.get ('markdown', None)
             
             # Status
-            print (f"\nUpdating '{project_name}' in path '{project_location}'...")
+            logger.info (f"\nUpdating '{project_name}' in path '{project_location}'...")
             
             # Validate markdown
             if not markdown:
-                print (f"\tNo markdown data for project '{project_name}'")
+                logger.info (f"\tNo markdown data for project '{project_name}'")
                 continue
             
             new_commands = update_readme (project_location, markdown)
@@ -39,17 +41,17 @@ def main ():
             # Update project status
             updated = api.update_project_status (project_id)
             if updated:
-                print (f"Status updated")
+                logger.info (f"Status updated")
             else:
-                print (f">> Error: Status not updated")
+                logger.error (f"Status not updated")
     
     if commands_to_save:
         commands_text = ' &\n'.join (commands_to_save)
         with open  (os.path.join (CURRENT_DIR, 'git-commands.bat'), 'w') as file:
             file.write (f"{commands_text}")
-        print ("\nCommands to update projects saved in 'git-commands.bat'")
+        logger.info ("\nCommands to update projects saved in 'git-commands.bat'")
         
-    print ("Done.")
+    logger.info ("Done.")
     
 if __name__ == "__main__":
     main()

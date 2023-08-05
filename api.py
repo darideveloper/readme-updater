@@ -1,7 +1,7 @@
 import os
-import json
-from dotenv import load_dotenv
+from logs import logger
 import requests
+from dotenv import load_dotenv
 
 load_dotenv () 
 API_USER_NAME = os.getenv ('API_USER_NAME')
@@ -16,7 +16,7 @@ class Api ():
         self.header = {}
         
         if DEBUG: 
-            print (">>Debug mode<<")
+            logger.info (">>Debug mode<<")
     
     def __login__ (self):
         """ Login with crdentials and get token """
@@ -29,23 +29,23 @@ class Api ():
         }
         res = requests.post (url, data=payload)
         if res.status_code != 200:
-            print ('Login failed: invalid crdentials')
+            logger.info ('Login failed: invalid crdentials')
             quit()
         
         # Get tokeb from json
         res_json = res.json ()
         if 'token' not in res_json:
-            print ('Login failed: token not found')
+            logger.info ('Login failed: token not found')
             quit()
             
         token = res_json['token']
         self.header = {'Authorization': f'Token {token}'}
-        print ('Login success')
+        logger.info ('Login success')
 
     def __query_projects__ (self):
         """ Get update status of all projects """
         
-        print ("\nGetting projects data...")
+        logger.info ("\nGetting projects data...")
                 
         url = f"{API_BASE}/projects-sumary/"
         while True:
@@ -81,28 +81,28 @@ class Api ():
             
         # Show status
         projects_count = len (self.projects_data)
-        print (f"\t{projects_count} projects found")
+        logger.info (f"\t{projects_count} projects found")
     
     def __query_markdown__ (self):
         """ get markdown data of all projects """
         
         if self.projects_data:
             
-            print ("\nGetting markdown data...")
+            logger.info ("\nGetting markdown data...")
             
             # Update each project
             for project_id, project_data in self.projects_data.items():
                 
                 project_name = project_data['name']
                 
-                print (f"\t{project_name}...")
+                logger.info (f"\t{project_name}...")
                 
                 url = f"{API_BASE}/project-markdown/?id={project_id}"
                 res = requests.get (url, headers=self.header)
                 
                 # Validate response status
                 if res.status_code != 200:
-                    print (f"\tError getting markdown data for project '{project_name}'")
+                    logger.error (f"\tError getting markdown data for project '{project_name}'")
                     continue
                 
                 # Get markdown
@@ -128,6 +128,10 @@ class Api ():
         url = f"{API_BASE}/project-update-remote/"
         res = requests.post (url, headers=self.header, data={'id': project_id})
         
+        if res.status_code != 200:
+            logger.error (f"Error updating project status {res.data}")
+            return False
+        
         return res.status_code == 200
         
     def get_data (self) -> list:
@@ -150,5 +154,5 @@ if __name__ == '__main__':
     
     # Debug update project status api when run directly
     api.update_projet_status (projects_data.keys ()[0])
-    print ()
+    logger.info ()
     

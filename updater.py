@@ -1,4 +1,6 @@
 import os
+import subprocess
+from logs import logger
 from dotenv import load_dotenv
 
 load_dotenv ()
@@ -20,12 +22,12 @@ def update_readme (path:str, markdown:str):
     if 'README.md' not in files:
         with open ('README.md', 'w') as file:
             file.write ('')
-        print (f"README.md file created")    
+        logger.info (f"README.md file created")    
     
     # Write data in readme file 
     with open ('README.md', 'w', encoding='UTF-8') as file:
         file.write (markdown)
-    print (f"README.md file updated")
+    logger.info (f"README.md file updated")
     
     # Git commands
     if AUTO_RUN_GIT: 
@@ -41,13 +43,15 @@ def update_readme (path:str, markdown:str):
         'git push origin master',
     ]
         
+        
     if AUTO_RUN_GIT:
         # auto commit changes
-        print ("---------- Git ----------")
+        logger.info ("---------- Git ----------")
         for command in commands:
-            print (f"Executing: '{command}'")
-            os.system (command)
-        print ("--------------------------")
+            logger.info (f"Executing: '{command}'")
+            result = subprocess.getoutput (command)
+            logger.info (f"Result: '{result}'")
+        logger.info ("--------------------------")
     else:
         # Add cd to commands
         commands.insert (0, f'cd {path_formatted}')
