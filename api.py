@@ -110,7 +110,7 @@ class Api ():
                 markdown = res_json['data']
                 
                 # remove backslashes
-                markdown = markdown.replace ('\\', '')
+                markdown = markdown.replace ('\\', '').replace("\r\n", "\n")
                 
                 # Save markdown in dict
                 self.projects_data[project_id]["markdown"] = markdown
