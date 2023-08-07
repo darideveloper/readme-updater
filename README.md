@@ -63,8 +63,13 @@ You should have registered your project in the dashboard and a local copy in you
 
 **[Contact Me](mailto:dariddeveloper@gmail.com) For give you free access to the dashboard**
 
-Sample Readme Preview auto-generated: 
+## Sample Readme Preview auto-generated with the project 
 ![sample readme](https://github.com/darideveloper/readme-updater/blob/master/screenshots/sample-readme.png?raw=true)
+
+## Logs
+
+The logs are saved in `.log` file. 
+This is useful if you use a tool for auto-run the project (check more details in `run` section)
 
 # Install
 
